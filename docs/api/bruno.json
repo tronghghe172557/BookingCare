@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "PJB 04",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

@@ -1,0 +1,15 @@
+meta {
+  name: Get product detail
+  type: http
+  seq: 3
+}
+
+get {
+  url: http://localhost:3000/product?id=abc
+  body: none
+  auth: none
+}
+
+params:query {
+  id: abc
+}

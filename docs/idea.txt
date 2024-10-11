@@ -1,0 +1,133 @@
+-----  Actors:
+Guest -> User -> Doctor -> Manager
+			  -> Patient
+			  -> Vendor
+
+-----  UCS:
+1. Common features for doctors
+	1.1. Profile management
+		- Personal/Professional info
+		- Visibility to patients/guests/doctors/...
+		- Activity logs
+		- ...
+	1.2. Appointment scheduling
+		- View/manage personal schedules
+		- Reminders
+	1.3. Patient management
+		- View/search records/medical histories
+		- Filter patients by criteria
+		- Assign schedule/treatment plan
+		- Patient notes/previous consultations
+		- ...
+	1.4. Prescription management
+		- Generate/save to patient records
+		- View/manage
+		- Assign items from inventory
+	1.5. Items managements (for manager/...)
+		- Check availability/stock
+		- Assign items to patients (same as 1.4)
+	1.6. Remote diagnostics
+		- Virtual consultation (video call)
+		- Get submitted symptoms, docs remotely
+		- Provide preliminary diagnoses/recommends
+	1.7. Communication
+		- Private messages
+		- Notifications/updates/reminders
+	1.8. Public
+		- Item info
+		- Guide/article/QA/...
+2. Exclusive features to managers
+	2.1. Manage doctors
+		- CRUD doctors, assign/link to platform account
+		- View doctors' schedules/workloads
+	2.2. Manage items 
+		- Medicines, equipments, locations/rooms, ...
+		- CRUD for items
+		- Track inventory, alerts on low stock
+		- Room assignments and availability
+	2.3. Manage HR
+		- Own staff/employees
+		- Assign staff to doctors/deps
+		- Monitor staff/doctors roles and schedules, performance
+	2.5. Reports
+		- On maintenance, ...
+		- Operational/performance reports
+3. Patients features
+	3.1. Profile
+	3.2. Manage appointment
+		- Search for doctors by ...
+		- View/manage appointments
+		- Reminders
+	3.3. Medical records
+		- View/download history (appointments, diagnoses, prescriptions, test results, ...)
+		- Access treatment plans and follow-up instructions
+	3.4. Manage prescriptions
+		- View current/past prescriptions, instructions, ...
+		- Request refill
+	3.5. Communication (same as 1.7)
+	3.6. Remote diagnostics (same as 1.6)
+	3.7. Health tracking
+		- Record/monitor health metrics (via external devices, ...)
+		- Receive health tips, reminders, ...
+	3.8. Public (same as 1.8)
+4. Guests features
+	4.1. View public information: (detail, availability, ...)
+		- Hospital
+		- Doctor
+		- Items
+	4.2. Popular doctor
+	4.3. Medical station search
+		- Nearby, recommended, ...
+	4.4. Public (same as 1.8)
+
+Notes on common functions:
+- Auth
+- Mobile UI
+- Localize
+- Analytics/reporting
+
+QA: 
+- One homepage for each hospital?
+- Privacy: patients can choose who can view their records?
+
+
+-----  DB Design
+
+User
+- info
+- role: admin, cs, vendor, doctor, patient
+
+Doctor (1 center : many doctors)
+- userId
+- job data
+
+Appointment (1 doctor - 1 patient : many appointments)
+- userId, doctorId, time
+- status: pending, ongoing, done
+
+Patient
+- userId
+- medical info: allergies, current treatment, ...
+
+Medical record (1 patient : many records)
+- patientId
+- record data
+
+Prescription (1 patient: many prescripts)
+- doctorId, patientId
+- itemId
+- amount
+- time
+- status
+
+Item (1 vendor: many items)
+- data: name, ...
+- amount
+- manufactory/expiry
+- vendorId
+
+Vendor
+- data: name, ...
+
+Center (1 center: many doctors, many items)
+- managerId (user id of manager)

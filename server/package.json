@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^6.9.0",
+    "mongoose": "^8.7.0"
+  },
+  "scripts": {
+    "dev": "npm ",
+    "build": "npm build"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
